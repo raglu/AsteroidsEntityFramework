@@ -3,14 +3,16 @@ package dk.sdu.mmmi.cbse.asteroidsystem;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.World;
-import dk.sdu.mmmi.cbse.common.data.entityparts.MovingPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.data.entityparts.ProjectilePart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
+import static java.lang.Math.sqrt;
 
 /**
  *
- * @author Rasmus BG
+ * @author jcs
  */
 public class AsteroidControlSystem implements IEntityProcessingService {
 
@@ -19,9 +21,9 @@ public class AsteroidControlSystem implements IEntityProcessingService {
 
         for (Entity asteroid : world.getEntities(Asteroid.class)) {
             PositionPart positionPart = asteroid.getPart(PositionPart.class);
-            ProjectilePart projectilePart = asteroid.getPart(MovingPart.class);
+            ProjectilePart movingPart = asteroid.getPart(ProjectilePart.class);
 
-            projectilePart.process(gameData, asteroid);
+            movingPart.process(gameData, asteroid);
             positionPart.process(gameData, asteroid);
 
             updateShape(asteroid);
@@ -39,19 +41,20 @@ public class AsteroidControlSystem implements IEntityProcessingService {
         shapex[0] = (float) (x + Math.cos(radians) * 8);
         shapey[0] = (float) (y + Math.sin(radians) * 8);
 
-        shapex[1] = (float) (x + Math.cos(radians + 1 * 3.1415f / 5) * 8);
-        shapey[1] = (float) (y + Math.sin(radians + 1 * 3.1145f / 5) * 8);
+        shapex[1] = (float) (x + Math.cos(radians + 2 * 3.1415f / 5) * 8);
+        shapey[1] = (float) (y + Math.sin(radians + 2 * 3.1145f / 5) * 8);
 
-        shapex[2] = (float) (x + Math.cos(radians + 2 * 3.1415f / 5) * 8);
-        shapey[2] = (float) (y + Math.sin(radians + 2 * 3.1415f / 5) * 8);
+        shapex[2] = (float) (x + Math.cos(radians + 4 * 3.1415f / 5) * 8);
+        shapey[2] = (float) (y + Math.sin(radians + 4 * 3.1415f / 5) * 8);
 
-        shapex[3] = (float) (x + Math.cos(radians + 3 * 3.1415f / 5) * 8);
-        shapey[3] = (float) (y + Math.sin(radians + 3 * 3.1415f / 5) * 8);
+        shapex[3] = (float) (x + Math.cos(radians + 6 * 3.1415f / 5) * 8);
+        shapey[3] = (float) (y + Math.sin(radians + 6 * 3.1415f / 5) * 8);
 
         shapex[4] = (float) (x + Math.cos(radians + 4 * 3.1415f / 5) * 8);
         shapey[4] = (float) (y + Math.sin(radians + 4 * 3.1415f / 5) * 8);
-
+        
         entity.setShapeX(shapex);
         entity.setShapeY(shapey);
     }
+
 }
