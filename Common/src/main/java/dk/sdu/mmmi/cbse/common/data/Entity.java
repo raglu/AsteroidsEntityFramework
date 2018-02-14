@@ -2,6 +2,7 @@ package dk.sdu.mmmi.cbse.common.data;
 
 import dk.sdu.mmmi.cbse.common.data.entityparts.EntityPart;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,12 +11,14 @@ public class Entity implements Serializable {
 
     private final UUID ID = UUID.randomUUID();
 
-    private float[] shapeX = new float[4];
-    private float[] shapeY = new float[4];
+    private ArrayList<Float> shapeX;
+    private ArrayList<Float> shapeY;
     private float radius;
     private Map<Class, EntityPart> parts;
 
     public Entity() {
+        this.shapeX = new ArrayList<>();
+        this.shapeY = new ArrayList<>();
         parts = new ConcurrentHashMap<>();
     }
 
@@ -43,19 +46,22 @@ public class Entity implements Serializable {
         return ID.toString();
     }
 
-    public float[] getShapeX() {
+    public ArrayList<Float> getShapeX() {
         return shapeX;
     }
 
-    public void setShapeX(float[] shapeX) {
+    public void setShapeX(ArrayList<Float> shapeX) {
+        this.shapeX.clear();
         this.shapeX = shapeX;
     }
 
-    public float[] getShapeY() {
+    public ArrayList<Float> getShapeY() {
         return shapeY;
     }
 
-    public void setShapeY(float[] shapeY) {
+    public void setShapeY(ArrayList<Float> shapeY) {
+        this.shapeY.clear();
         this.shapeY = shapeY;
     }
+
 }

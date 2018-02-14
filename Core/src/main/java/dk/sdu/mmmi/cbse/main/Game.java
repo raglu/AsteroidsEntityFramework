@@ -20,8 +20,7 @@ import dk.sdu.mmmi.cbse.playersystem.PlayerControlSystem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Game
-        implements ApplicationListener {
+public class Game implements ApplicationListener {
 
     private static OrthographicCamera cam;
     private ShapeRenderer sr;
@@ -91,14 +90,14 @@ public class Game
 
             sr.begin(ShapeRenderer.ShapeType.Line);
 
-            float[] shapex = entity.getShapeX();
-            float[] shapey = entity.getShapeY();
+            ArrayList<Float> shapex = entity.getShapeX();
+            ArrayList<Float> shapey = entity.getShapeY();
 
-            for (int i = 0, j = shapex.length - 1;
-                    i < shapex.length;
+            for (int i = 0, j = shapex.size() - 1;
+                    i < shapex.size();
                     j = i++) {
 
-                sr.line(shapex[i], shapey[i], shapex[j], shapey[j]);
+                sr.line(shapex.get(i), shapey.get(i), shapex.get(j), shapey.get(j));
             }
 
             sr.end();
