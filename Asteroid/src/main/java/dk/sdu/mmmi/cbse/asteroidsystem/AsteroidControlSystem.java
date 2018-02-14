@@ -50,8 +50,8 @@ public class AsteroidControlSystem implements IEntityProcessingService {
         shapex[3] = (float) (x + Math.cos(radians + 6 * 3.1415f / 5) * 8);
         shapey[3] = (float) (y + Math.sin(radians + 6 * 3.1415f / 5) * 8);
 
-        shapex[4] = (float) (x + Math.cos(radians + 4 * 3.1415f / 5) * 8);
-        shapey[4] = (float) (y + Math.sin(radians + 4 * 3.1415f / 5) * 8);
+//        shapex[4] = (float) (x + Math.cos(radians + 4 * 3.1415f / 5) * 8);
+//        shapey[4] = (float) (y + Math.sin(radians + 4 * 3.1415f / 5) * 8);
         
         entity.setShapeX(shapex);
         entity.setShapeY(shapey);
