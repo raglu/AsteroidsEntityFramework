@@ -10,14 +10,12 @@ public class Entity implements Serializable {
 
     private final UUID ID = UUID.randomUUID();
 
-    private float[] shapeX;
-    private float[] shapeY;
+    protected float[] shapeX = new float[4];
+    protected float[] shapeY = new float[4]; 
     private float radius;
     private Map<Class, EntityPart> parts;
 
-    public Entity(int numPoint) {
-        shapeX = new float[numPoint];
-        shapeY = new float[numPoint];
+    public Entity() {
         parts = new ConcurrentHashMap<>();
     }
 

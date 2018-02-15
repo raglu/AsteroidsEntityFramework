@@ -8,18 +8,14 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import dk.sdu.mmmi.cbse.asteroidsystem.AsteroidControlSystem;
 import dk.sdu.mmmi.cbse.asteroidsystem.AsteroidPlugin;
 import dk.sdu.mmmi.cbse.bulletsystem.BulletControlSystem;
-import dk.sdu.mmmi.cbse.bulletsystem.BulletPlugin;
 import dk.sdu.mmmi.cbse.common.data.Entity;
 import dk.sdu.mmmi.cbse.common.data.GameData;
-import static dk.sdu.mmmi.cbse.common.data.GameKeys.SPACE;
 import dk.sdu.mmmi.cbse.common.data.World;
-import dk.sdu.mmmi.cbse.common.data.entityparts.PositionPart;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.enemysystem.EnemyControlSystem;
 import dk.sdu.mmmi.cbse.enemysystem.EnemyPlugin;
 import dk.sdu.mmmi.cbse.managers.GameInputProcessor;
-import dk.sdu.mmmi.cbse.playersystem.Player;
 import dk.sdu.mmmi.cbse.playersystem.PlayerPlugin;
 import dk.sdu.mmmi.cbse.playersystem.PlayerControlSystem;
 import java.util.ArrayList;
@@ -57,9 +53,7 @@ public class Game implements ApplicationListener {
         entityProcessors.add(new AsteroidControlSystem());
         entityProcessors.add(new BulletControlSystem());
 
-        IGamePluginService playerPlugin = new PlayerPlugin();
-        entityPlugins.add(playerPlugin);
-
+        entityPlugins.add(new PlayerPlugin());
         entityPlugins.add(new EnemyPlugin());
         entityPlugins.add(new AsteroidPlugin());
 
@@ -86,18 +80,6 @@ public class Game implements ApplicationListener {
     }
 
     private void update() {
-
-        if (gameData.getKeys().isPressed(SPACE)) {
-            for (Entity player : world.getEntities(Player.class)) {
-                PositionPart positionPart = player.getPart(PositionPart.class);
-                float x = positionPart.getX();
-                float y = positionPart.getY();
-                float radians = positionPart.getRadians();
-                BulletPlugin bulletPlugin = new BulletPlugin(x, y, radians);
-                bulletPlugin.start(gameData, world);
-                entityPlugins.add(bulletPlugin);
-            }
-        }
         // Update
         for (IEntityProcessingService entityProcessorService : entityProcessors) {
             entityProcessorService.process(gameData, world);
