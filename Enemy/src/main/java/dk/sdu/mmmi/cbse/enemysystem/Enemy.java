@@ -7,5 +7,11 @@ import dk.sdu.mmmi.cbse.common.data.Entity;
  * @author corfixen
  */
 public class Enemy extends Entity {
+    
+    static protected int NUMPOINTS = 4;
+
+    public Enemy(int numPoint) {
+        super(numPoint);
+    }
 
 }
